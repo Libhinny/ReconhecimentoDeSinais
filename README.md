@@ -5,7 +5,7 @@ Este projeto tem como objetivo principal promover a inclusão de pessoas que uti
 ## Metodologia:
 
 - **Linguagem de Programação:** Python
-- **Bibliotecas Utilizadas:** NumPy, Matplotlib, Pandas, Tensorflow, Sklearn
+- **Bibliotecas Utilizadas:** NumPy, Matplotlib, Pandas, Tensorflow, e Sklearn
 - **Ambiente de Desenvolvimento:** Google Colab para colaboração e compartilhamento de códigos.
 
 ## Recursos de Inteligência Artificial:
