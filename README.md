@@ -1,11 +1,11 @@
-<h1 align="center"> BRAZILIAN SIGN LANGUAGE FACIAL RECOGNITION SYSTEM </h1>
+<h1 align="center"> BRAZILIAN SIGN LANGUAGE SIGN RECOGNITION SYSTEM </h1>
 
 Este projeto tem como objetivo principal promover a inclusão de pessoas que utilizam a linguagem de sinais, bem como aquelas que não a dominam plenamente, propondo um sistema inovador que facilite a comunicação entre ambos os grupos.
 
 ## Metodologia:
 
 - **Linguagem de Programação:** Python
-- **Bibliotecas Utilizadas:** NumPy, Matplotlib, Pandas, Tensorflow, Sklearn
+- **Bibliotecas Utilizadas:** NumPy, Matplotlib, Pandas, Tensorflow e Sklearn
 - **Ambiente de Desenvolvimento:** Google Colab para colaboração e compartilhamento de códigos.
 
 ## Recursos de Inteligência Artificial:
