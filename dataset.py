@@ -1,3 +1,4 @@
+
 import zipfile
 from io import BytesIO
 from PIL import Image
@@ -47,3 +48,4 @@ caminho_arquivo_zip = "C:/Users/fllsa/Music/redes/ReconhecimentoDeSinais/archive
 num_imagens_a_exibir = 2
 
 extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir)
+
