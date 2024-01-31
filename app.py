@@ -1,6 +1,6 @@
-import pandas as pd 
 import streamlit as st
-import numpy as np 
+import tensorflow as tf
+## from modelo_treinamento import 
 
 # Cabeçalho
 
@@ -40,6 +40,21 @@ inclusivas são passos essenciais para garantir que a sociedade seja acessível 
 # Exibindo a conclusão justificada
 st.markdown(f"<div style='text-align: justify'>{texto_conclusao}</div>", unsafe_allow_html=True)
 
+#  Função para carregar o modelo usando o decorador @st.cache
+
+
+# @st.cache(allow_output_mutation=True)
+# def load_model():
+  
+#     model = tf.keras.models.load_model('caminho/para/seu/modelo')  # Substitua pelo caminho do seu modelo
+#     return model
+
+# # Carregando o modelo
+# model = load_model()
+
+# Agora você pode usar o modelo para realizar previsões ou outras tarefas
+# Exemplo de uso:
+# result = model.predict(input_data)
 ########################################################################################################################
 
 
