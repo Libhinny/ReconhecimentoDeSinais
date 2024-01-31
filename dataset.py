@@ -6,7 +6,7 @@ import os
 import shutil
 
 
-def extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir=2):
+def extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir=4):
     # criação de um diretório temporario
     dir_temporario_extracao = "temp_imagens_extraidas"
 
@@ -44,7 +44,6 @@ def extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir=2):
 caminho_arquivo_zip = "C:/Users/fllsa/Music/redes/ReconhecimentoDeSinais/archive.zip"
 
 # Número de imagens para exibir
-num_imagens_a_exibir = 2
+num_imagens_a_exibir = 4
 
 extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir)
-
