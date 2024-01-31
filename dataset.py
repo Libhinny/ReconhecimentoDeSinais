@@ -5,46 +5,45 @@ import matplotlib.pyplot as plt
 import os
 import shutil
 
-def extract_and_display_images(zip_file_path, num_images_to_display=2):
-    # diretorio temporario para a extração
-    temp_extracted_dir = 'temp_extracted_images'
 
-    os.makedirs(temp_extracted_dir, exist_ok=True)
+def extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir=2):
+    # criação de um diretório temporario
+    dir_temporario_extracao = "temp_imagens_extraidas"
+
+    os.makedirs(dir_temporario_extracao, exist_ok=True)
 
     try:
-        # entraindo o arquivo zip
-        with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-            # lista todos os arquivos extraídos
-            extracted_files = zip_ref.namelist()
+        # extração do zip
+        with zipfile.ZipFile(caminho_arquivo_zip, "r") as zip_ref:
+            # Listar todos os arquivos extraídos
+            arquivos_extraidos = zip_ref.namelist()
 
-            # Exibir as primeiras N imagens do diretório
-            for i, file_name in enumerate(extracted_files[:num_images_to_display]):
-                file_path = os.path.join(temp_extracted_dir, file_name)
+            # exibir as primeiras fotos do diretorio
+            for i, nome_arquivo in enumerate(arquivos_extraidos[:num_imagens_a_exibir]):
+                caminho_arquivo = os.path.join(dir_temporario_extracao, nome_arquivo)
 
-                # Extrair o arquivo para o diretório temporário
-                zip_ref.extract(file_name, temp_extracted_dir)
+                zip_ref.extract(nome_arquivo, dir_temporario_extracao)
 
-                # Ler a imagem do arquivo extraído
-                with Image.open(file_path) as img:
-                    # Exibir a imagem
-                    plt.subplot(1, num_images_to_display, i + 1)
+                # ler e mostrar a imagem
+                with Image.open(caminho_arquivo) as img:
+                    plt.subplot(1, num_imagens_a_exibir, i + 1)
                     plt.imshow(img)
-                    plt.axis('off')
+                    plt.axis("off")
 
-            # Exibir o plot
             plt.show()
 
     except Exception as e:
         print(f"Falha ao processar o arquivo zip: {str(e)}")
 
     finally:
-        # Remover o diretório temporário de extração
-        shutil.rmtree(temp_extracted_dir, ignore_errors=True)
+        # remove o diretorio temporario
+        shutil.rmtree(dir_temporario_extracao, ignore_errors=True)
 
-zip_file_path = 'C:/Users/fllsa/Music/redes/ReconhecimentoDeSinais/archive.zip'
+
+# Caminho para o arquivo zipado
+caminho_arquivo_zip = "C:/Users/fllsa/Music/redes/ReconhecimentoDeSinais/archive.zip"
 
 # Número de imagens para exibir
-num_images_to_display = 3 
+num_imagens_a_exibir = 2
 
-# Chamar a função para extrair e exibir as imagens
-extract_and_display_images(zip_file_path, num_images_to_display)
+extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir)
