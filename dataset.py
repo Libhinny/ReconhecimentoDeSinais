@@ -4,6 +4,7 @@ from PIL import Image
 import matplotlib.pyplot as plt #plotar graficos 
 import os #SO do computador 
 import shutil #para manipulação de arquivos e diretorios 
+import pandas as pd 
 
 
 def extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir=4):
@@ -41,9 +42,26 @@ def extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir=4):
 
 
 # Caminho para o arquivo zipado
-caminho_arquivo_zip = "C:/Users/fllsa/Music/redes/ReconhecimentoDeSinais/archive.zip"
+# caminho_arquivo_zip = "C:/Users/fllsa/Music/redes/ReconhecimentoDeSinais/archive.zip" (Lorrayne)
+caminho_arquivo_zip = r"C:\Users\libhi\projetoSinais\ReconhecimentoDeSinais\dataset_SignLanguage.zip" # Caminho - libhinny
 
 # Número de imagens para exibir
 num_imagens_a_exibir = 4
 
 extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir)
+
+# Adicionando as labels 
+
+# Lista para armazenar os nomes dos arquivos
+nomes_arquivos_zip = ['Bank', 'Bus', 'Car', 'Formation', 'Hospital', 'I', 'Man', 'Motorcycle', 'My', 'Supermarket', 'We', 'Woman', 'You', 'You (plural)', 'Your']
+
+# Extrair os nomes dos arquivos no zip
+with zipfile.ZipFile(caminho_arquivo_zip, 'r') as zip_ref:
+    nomes_arquivos_zip = zip_ref.namelist()
+
+
+# Criar um DataFrame pandas com os nomes dos arquivos
+df_nomes_arquivos = pd.DataFrame({"Nomes dos Arquivos": nomes_arquivos_zip})
+
+# Exibir o DataFrame
+print(df_nomes_arquivos)
