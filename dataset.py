@@ -1,9 +1,9 @@
-import zipfile
-from io import BytesIO
-from PIL import Image
-import matplotlib.pyplot as plt
-import os
-import shutil
+import zipfile #extrair o zip
+from io import BytesIO #reconhecer numeros binarios e converter 
+from PIL import Image 
+import matplotlib.pyplot as plt #plotar graficos 
+import os #SO do computador 
+import shutil #para manipulação de arquivos e diretorios 
 
 
 def extrair_e_exibir_imagens(caminho_arquivo_zip, num_imagens_a_exibir=4):
