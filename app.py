@@ -1,5 +1,6 @@
 import streamlit as st
 import tensorflow as tf
+from ReconhecimentoDeSinais.main import extrair_e_exibir_imagens
 ## from modelo_treinamento import 
 
 # Cabeçalho
