@@ -2,7 +2,7 @@ import streamlit as st
 import tensorflow as tf
 import os
 import pandas as pd
-import cv2
+from reconhecimento import Ligar_webcam
 
 
 #from ReconhecimentoDeSinais.main import extrair_e_exibir_imagens
@@ -28,6 +28,20 @@ with st.sidebar:
     """
     
     st.info(info)
+    
+    #função de capturar o video
+    
+    st.wirite("Clique no botão para exibir a webcan")
+    if st.button("Inicie a webcan"):
+        Ligar_webcam()
+        
+        
+    
+    
+    
+    
+ 
+    
     
         
 
