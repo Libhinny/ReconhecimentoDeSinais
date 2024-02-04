@@ -3,6 +3,7 @@ import tensorflow as tf
 import os
 import pandas as pd
 from reconhecimento import Ligar_webcam
+from dataset import extrair_e_exibir_imagens
 
 
 #from ReconhecimentoDeSinais.main import extrair_e_exibir_imagens
@@ -31,9 +32,16 @@ with st.sidebar:
     
     #função de capturar o video
     
-    st.wirite("Clique no botão para exibir a webcan")
-    if st.button("Inicie a webcan"):
-        Ligar_webcam()
+    # st.write("Clique no botão para exibir a webcan")
+    # if st.button("Inicie a webcan"):
+    #     Ligar_webcam()
+    
+    # exibir_imagem = extrair_e_exibir_imagens()    
+    # st.write("Imagens do dataset")
+    # st.image(exibir_imagem)
+    
+        
+    
         
         
     
