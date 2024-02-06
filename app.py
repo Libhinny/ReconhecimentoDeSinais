@@ -2,8 +2,8 @@ import streamlit as st
 import tensorflow as tf
 import os
 import pandas as pd
-from reconhecimento import Ligar_webcam
-from dataset import extrair_e_exibir_imagens
+# from reconhecimento import Ligar_webcam
+# from dataset import extrair_e_exibir_imagens
 
 
 #from ReconhecimentoDeSinais.main import extrair_e_exibir_imagens
@@ -32,13 +32,26 @@ with st.sidebar:
     
     #função de capturar o video
     
-    # st.write("Clique no botão para exibir a webcan")
-    # if st.button("Inicie a webcan"):
+    # st.write("Clique no botão para exibir a webcam")
+    # if st.button("Inicie a webcam"):
     #     Ligar_webcam()
     
     # exibir_imagem = extrair_e_exibir_imagens()    
     # st.write("Imagens do dataset")
     # st.image(exibir_imagem)
+    
+    # @st.cache_resource
+    # def load_model():
+    #     #logica do modelo quando a mesma estiver pronta
+    #     model.eval()
+        
+    #     return Model 
+    
+    # model = load_model()
+    
+    
+    
+    
     
         
     
