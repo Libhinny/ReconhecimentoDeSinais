@@ -36,4 +36,3 @@ def Ligar_webcam():
     finally:
         webcam.release()
         cv2.destroyAllWindows()
-
