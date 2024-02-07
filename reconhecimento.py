@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 
 webcam = cv2.VideoCapture()
-ip = "https://10.194.40.94:8080/video"
+ip = "https://192.168.1.10:8080/video"  # aqui é o ip do celular
 webcam.open(ip)  # para detectar a webcam
 
 hand = mp.solutions.hands.Hands(max_num_hands=2)  # mapear as mãos
