@@ -5,3 +5,5 @@ tensorflow
 streamlit
 mediapipe
 pillow
+mediapipe
+opencv-python
