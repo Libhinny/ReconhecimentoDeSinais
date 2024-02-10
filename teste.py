@@ -1,28 +1,36 @@
 import cv2
-import streamlit as st
-import numpy as np
+import mediapipe as mp 
+import time
 
 
-cap = cv2.VideoCapture(0)  # 0 representa a câmera padrão (pode variar dependendo do sistema)
-placeholder = st.empty()
 
-while True:
-    ret, frame = cap.read()
+def Reconhecermao():
+    camera = cv2.VideoCapture(0)
+    mpMaos = mp.solutions.hands
+    maos   = mpMaos.Hands()
+    mpDesenho = mp.solutions.drawing_utils
 
-    # Exibir frame no Streamlit
-    if not ret:
-        st.warning("Erro ao capturar o frame. Verifique a câmera.")
-        break
+    tic = 0
+    tac = 0
 
-    # Converter o frame para o formato RGB
-    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    while True:
+        sucesso, imagem = camera.read()
+        imagemRGB = cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB)
+        resultados = maos.process(imagemRGB)
 
-    # Atualizar o contêiner vazio com o novo frame
-    placeholder.image(rgb_frame, channels="RGB")
+        if resultados.multi_hand_landmarks:
+            for maosPntRef in resultados.multi_hand_landmarks:
+                mpDesenho.draw_landmarks(imagem, maosPntRef, mpMaos.HAND_CONNECTIONS)
+        
+        tac = time.time()
+        fps = 1/(tac-tic)
+        tic = tac
 
-    # Verificar se o botão "Parar" foi pressionado
-    if st.button("Parar"):
-        break
+        cv2.putText(imagem, str(int(fps)), (10,70), cv2.FONT_HERSHEY_PLAIN, 3, (0,255,0), 3)
 
-# Liberar a câmera após o término do loop
-cap.release()
+        cv2.imshow("Câmera", imagem)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+        
+if __name__ == "__main__":
+    Reconhecermao()

@@ -2,7 +2,9 @@ import streamlit as st
 import tensorflow as tf
 import os
 import pandas as pd
-# from reconhecimento import Ligar_webcam
+from teste import Reconhecermao
+
+
 # from dataset import extrair_e_exibir_imagens
 
 
@@ -32,24 +34,16 @@ with st.sidebar:
     
     #função de capturar o video
     
-    # st.write("Clique no botão para exibir a webcam")
-    # if st.button("Inicie a webcam"):
-    #     Ligar_webcam()
-    
-    # exibir_imagem = extrair_e_exibir_imagens()    
-    # st.write("Imagens do dataset")
-    # st.image(exibir_imagem)
-    
-    # @st.cache_resource
-    # def load_model():
-    #     #logica do modelo quando a mesma estiver pronta
-    #     model.eval()
-        
-    #     return Model 
-    
-    # model = load_model()
-    
-    
+def exibir():
+    st.title("Detecção de Mãos com Streamlit")
+
+    stframe = st.empty()
+
+    for frame in Reconhecermao():
+        stframe.image(frame, channels='BGR')
+
+if __name__ == "__main__":
+    st.video(exibir())
     
     
     
