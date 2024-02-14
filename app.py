@@ -171,6 +171,6 @@ def ligar_webcam(ip):
 # Sidebar do ip (LORRAYNE SEM WEB CAM POR ISSO USANDO O IP)
 ip = st.sidebar.text_input("Insira o IP da webcam:", "https://192.168.1.5:8080/video")
 
-# iniciar a webcam
+# iniciar a Webcam
 if st.sidebar.button("Iniciar Webcam"):
     ligar_webcam(ip)
