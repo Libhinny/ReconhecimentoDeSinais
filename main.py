@@ -455,28 +455,197 @@ for image in val_your_image:
         pass
 
 
+# Plot Image (BANK)
+def view_random_image_bank(bank_dir, bank_image):
+    target_folder = bank_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(bank_image)
+    plt.imshow(img)
+    plt.axis('off')
 
-# def view_random_image(target_dir, target_class):
-#     target_folder = os.path.join(target_dir, target_class)
-#     random_image = random.choice(os.listdir(target_folder))
+view_random_image_bank(bank_dir, 'bank')
 
-#     img = mpimg.imread(os.path.join(target_folder, random_image))
-#     print(img.shape)
-#     plt.title(target_class)
-#     plt.imshow(img)
-#     plt.axis("off")
+# Plot Image (BUS)
+def view_random_image_bus(bus_dir, bus_image):
+    target_folder = bus_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(bus_image)
+    plt.imshow(img)
+    plt.axis('off')
 
+view_random_image_bus(bus_dir, 'bus')
 
-# # View a random image
-# view_random_image(train_dir, 'man')
+# Plot Image (CAR)
+def view_random_image_car(car_dir, car_image):
+    target_folder = car_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(car_image)
+    plt.imshow(img)
+    plt.axis('off')
 
-# train_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
-# val_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
+view_random_image_car(car_dir, 'car')
 
-# train_dataset = train_data_gen.flow_from_directory(
-#     train_dir, target_size=(227, 227), class_mode="categorical"
-# )
+# Plot Image (FORMATION)
+def view_random_image_formation(formation_dir, formation_image):
+    target_folder = formation_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(formation_image)
+    plt.imshow(img)
+    plt.axis('off')
 
-# val_dataset = val_data_gen.flow_from_directory(
-#     val_dir, target_size=(227, 227), class_mode="categorical"
-# )
+view_random_image_formation(formation_dir, 'formation')
+
+# Plot Image (HOSPITAL)
+def view_random_image_hospital(hospital_dir, hospital_image):
+    target_folder = hospital_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(hospital_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_hospital(hospital_dir, 'hospital')
+
+# Plot Image (I)
+def view_random_image_I(I_dir, I_image):
+    target_folder = I_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(I_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_I(I_dir, 'I')
+
+# Plot Image (MAN)
+def view_random_image_man(man_dir, man_image):
+    target_folder = man_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(man_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_man(man_dir, 'man')
+
+# Plot Image (MOTORCYCLE)
+def view_random_image_motorcycle(motorcycle_dir, motorcycle_image):
+    target_folder = motorcycle_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(motorcycle_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_motorcycle(motorcycle_dir, 'motorcycle')
+
+# Plot Image (MY)
+def view_random_image_my(my_dir, my_image):
+    target_folder = my_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(my_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_my(my_dir, 'my')
+
+# Plot Image (SUPERMARKET)
+def view_random_image_supermarket(supermarket_dir, supermarket_image):
+    target_folder = supermarket_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(supermarket_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_supermarket(supermarket_dir, 'supermarket')
+
+# Plot Image (WE)
+def view_random_image_we(we_dir, we_image):
+    target_folder = we_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(we_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_we(we_dir, 'we')
+
+# Plot Image (WOMAN)
+def view_random_image_woman(woman_dir, woman_image):
+    target_folder = woman_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(woman_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_woman(woman_dir, 'woman')
+
+# Plot Image (YOU)
+def view_random_image_you(you_dir, you_image):
+    target_folder = you_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(you_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_you(you_dir, 'you')
+
+# Plot Image (youPlural)
+def view_random_image_youplural(youPlural_dir, youPlural_image):
+    target_folder = youPlural_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(youPlural_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_youplural(youPlural_dir, 'youPlural')
+
+# Plot Image (YOUR)
+def view_random_image_your(your_dir, your_image):
+    target_folder = your_dir + '\\'
+    random_image = random.choice(os.listdir(target_folder))
+    
+    img = mpimg.imread(target_folder + random_image)
+    print(img.shape)
+    plt.title(your_image)
+    plt.imshow(img)
+    plt.axis('off')
+
+view_random_image_your(your_dir, 'your')
