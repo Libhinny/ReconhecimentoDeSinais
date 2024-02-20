@@ -76,46 +76,45 @@ train_man_image = man_image[: int(0.8 * len(man_image))]
 val_man_image = man_image[int(0.8 * len(man_image)) :]
 
 
-train_dir = r"C:\Users\fllsa\Desktop\Redes\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\man"
+train_dir = r"C:\Users\fllsa\Desktop\Redes\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train"
 val_dir = r"C:\Users\fllsa\Desktop\Redes\ReconhecimentoDeSinais\dataset_SignLanguage1\validation\validation"
 
-# Create directories
-os.makedirs(os.path.join(train_dir, "man"), exist_ok=True)
-os.makedirs(os.path.join(val_dir, "man"), exist_ok=True)
+# # Create directories
+os.makedirs(train_dir + "\man", exist_ok=True)
+os.makedirs(val_dir + "\man", exist_ok=True)
 # Copy images to train directory
 for image in train_man_image:
-    src = os.path.join(man_dir, image)
-    dst = os.path.join(train_dir, "man", image)
+    src = man_dir + "\\" + image
+    dst = train_dir + "\man"
     shutil.copy(src, dst)
-
 # Copy image to validation directory
-for image in val_man_image:
-    src = os.path.join(man_dir, image)
-    dst = os.path.join(val_dir, "man", image)
-    shutil.copy(src, dst)
+# for image in val_dir:
+#     src = man_dir + image
+#     dst = val_dir + '\man'
+#     shutil.copy(src, dst)
 
 
-def view_random_image(target_dir, target_class):
-    target_folder = os.path.join(target_dir, target_class)
-    random_image = random.choice(os.listdir(target_folder))
+# def view_random_image(target_dir, target_class):
+#     target_folder = os.path.join(target_dir, target_class)
+#     random_image = random.choice(os.listdir(target_folder))
 
-    img = mpimg.imread(os.path.join(target_folder, random_image))
-    print(img.shape)
-    plt.title(target_class)
-    plt.imshow(img)
-    plt.axis("off")
+#     img = mpimg.imread(os.path.join(target_folder, random_image))
+#     print(img.shape)
+#     plt.title(target_class)
+#     plt.imshow(img)
+#     plt.axis("off")
 
 
-# View a random image
-view_random_image(train_dir, "man")
+# # View a random image
+# view_random_image(train_dir, 'man')
 
-train_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
-val_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
+# train_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
+# val_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
 
-train_dataset = train_data_gen.flow_from_directory(
-    train_dir, target_size=(227, 227), class_mode="categorical"
-)
+# train_dataset = train_data_gen.flow_from_directory(
+#     train_dir, target_size=(227, 227), class_mode="categorical"
+# )
 
-val_dataset = val_data_gen.flow_from_directory(
-    val_dir, target_size=(227, 227), class_mode="categorical"
-)
+# val_dataset = val_data_gen.flow_from_directory(
+#     val_dir, target_size=(227, 227), class_mode="categorical"
+# )
