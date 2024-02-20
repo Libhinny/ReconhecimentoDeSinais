@@ -88,7 +88,7 @@ for image in train_man_image:
     dst = os.path.join(train_dir, "man", image)
     shutil.copy(src, dst)
 
-# Copy images to validation directory
+# Copy image to validation directory
 for image in val_man_image:
     src = os.path.join(man_dir, image)
     dst = os.path.join(val_dir, "man", image)
