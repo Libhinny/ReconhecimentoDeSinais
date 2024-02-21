@@ -675,7 +675,8 @@ def view_random_image_your(your_dir, your_image):
     plt.axis("off")
 
 
-# view_random_image_your(your_dir, "your")
+view_random_image_your(your_dir, "your")
+
 # train_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
 # val_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
 
