@@ -13,27 +13,27 @@ import random
 
 
 for dirname, _, filenames in os.walk(
-    r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train"
+    r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train"
 ):
     for filename in filenames:
         print(os.path.join(dirname, filename))
 
 # train dataset
-bank_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\bank"
-bus_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\bus"
-car_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\car"
-formation_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\formation"
-hospital_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\hospital"
-I_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\I"
-man_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\man"
-motorcycle_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\motorcycle"
-my_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\my"
-supermarket_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\supermarket"
-we_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\we"
-woman_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\woman"
-you_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\you"
-youPlural_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\you (plural)"
-your_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\your"
+bank_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\bank"
+bus_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\bus"
+car_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\car"
+formation_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\formation"
+hospital_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\hospital"
+I_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\I"
+man_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\man"
+motorcycle_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\motorcycle"
+my_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\my"
+supermarket_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\supermarket"
+we_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\we"
+woman_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\woman"
+you_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\you"
+youPlural_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\you (plural)"
+your_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\your"
 
 bank_image = os.listdir(bank_dir)
 bus_image = os.listdir(bus_dir)
@@ -128,13 +128,12 @@ train_your_image = your_image[: int(0.8 * len(your_image))]
 val_your_image = your_image[int(0.8 * len(your_image)) :]
 
 
-train_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train"
-val_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\validation\validation"
+train_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train"
+val_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\validation\validation"
 
 # Create directories (BANK)
 os.makedirs(train_dir + "\\bank", exist_ok=True)
 os.makedirs(val_dir + "\\bank", exist_ok=True)
-
 
 
 # Copy images to train directory (bank)
@@ -154,7 +153,6 @@ for image in val_bank_image:
         shutil.copy(src, dst)
     except shutil.SameFileError:
         pass
-
 
 
 # Create directories (BUS)
@@ -457,195 +455,234 @@ for image in val_your_image:
 
 # Plot Image (BANK)
 def view_random_image_bank(bank_dir, bank_image):
-    target_folder = bank_dir + '\\'
+    target_folder = bank_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(bank_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_bank(bank_dir, 'bank')
+
+view_random_image_bank(bank_dir, "bank")
+
 
 # Plot Image (BUS)
 def view_random_image_bus(bus_dir, bus_image):
-    target_folder = bus_dir + '\\'
+    target_folder = bus_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(bus_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_bus(bus_dir, 'bus')
+
+view_random_image_bus(bus_dir, "bus")
+
 
 # Plot Image (CAR)
 def view_random_image_car(car_dir, car_image):
-    target_folder = car_dir + '\\'
+    target_folder = car_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(car_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_car(car_dir, 'car')
+
+view_random_image_car(car_dir, "car")
+
 
 # Plot Image (FORMATION)
 def view_random_image_formation(formation_dir, formation_image):
-    target_folder = formation_dir + '\\'
+    target_folder = formation_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(formation_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_formation(formation_dir, 'formation')
+
+view_random_image_formation(formation_dir, "formation")
+
 
 # Plot Image (HOSPITAL)
 def view_random_image_hospital(hospital_dir, hospital_image):
-    target_folder = hospital_dir + '\\'
+    target_folder = hospital_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(hospital_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_hospital(hospital_dir, 'hospital')
+
+view_random_image_hospital(hospital_dir, "hospital")
+
 
 # Plot Image (I)
 def view_random_image_I(I_dir, I_image):
-    target_folder = I_dir + '\\'
+    target_folder = I_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(I_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_I(I_dir, 'I')
+
+view_random_image_I(I_dir, "I")
+
 
 # Plot Image (MAN)
 def view_random_image_man(man_dir, man_image):
-    target_folder = man_dir + '\\'
+    target_folder = man_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(man_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_man(man_dir, 'man')
+
+view_random_image_man(man_dir, "man")
+
 
 # Plot Image (MOTORCYCLE)
 def view_random_image_motorcycle(motorcycle_dir, motorcycle_image):
-    target_folder = motorcycle_dir + '\\'
+    target_folder = motorcycle_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(motorcycle_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_motorcycle(motorcycle_dir, 'motorcycle')
+
+view_random_image_motorcycle(motorcycle_dir, "motorcycle")
+
 
 # Plot Image (MY)
 def view_random_image_my(my_dir, my_image):
-    target_folder = my_dir + '\\'
+    target_folder = my_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(my_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_my(my_dir, 'my')
+
+view_random_image_my(my_dir, "my")
+
 
 # Plot Image (SUPERMARKET)
 def view_random_image_supermarket(supermarket_dir, supermarket_image):
-    target_folder = supermarket_dir + '\\'
+    target_folder = supermarket_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(supermarket_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_supermarket(supermarket_dir, 'supermarket')
+
+view_random_image_supermarket(supermarket_dir, "supermarket")
+
 
 # Plot Image (WE)
 def view_random_image_we(we_dir, we_image):
-    target_folder = we_dir + '\\'
+    target_folder = we_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(we_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_we(we_dir, 'we')
+
+view_random_image_we(we_dir, "we")
+
 
 # Plot Image (WOMAN)
 def view_random_image_woman(woman_dir, woman_image):
-    target_folder = woman_dir + '\\'
+    target_folder = woman_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(woman_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_woman(woman_dir, 'woman')
+
+view_random_image_woman(woman_dir, "woman")
+
 
 # Plot Image (YOU)
 def view_random_image_you(you_dir, you_image):
-    target_folder = you_dir + '\\'
+    target_folder = you_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(you_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_you(you_dir, 'you')
+
+view_random_image_you(you_dir, "you")
+
 
 # Plot Image (youPlural)
 def view_random_image_youplural(youPlural_dir, youPlural_image):
-    target_folder = youPlural_dir + '\\'
+    target_folder = youPlural_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(youPlural_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_youplural(youPlural_dir, 'youPlural')
+
+view_random_image_youplural(youPlural_dir, "youPlural")
+
 
 # Plot Image (YOUR)
 def view_random_image_your(your_dir, your_image):
-    target_folder = your_dir + '\\'
+    target_folder = your_dir + "\\"
     random_image = random.choice(os.listdir(target_folder))
-    
+
     img = mpimg.imread(target_folder + random_image)
     print(img.shape)
     plt.title(your_image)
     plt.imshow(img)
-    plt.axis('off')
+    plt.axis("off")
 
-view_random_image_your(your_dir, 'your')
+
+# view_random_image_your(your_dir, "your")
+# train_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
+# val_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1 / 255.0)
+
+# train_dataset = train_data_gen.flow_from_directory(
+#     train_dir, target_size=(227, 227), class_mode="categorical"
+# )
+
+# val_dataset = val_data_gen.flow_from_directory(
+#     val_dir, target_size=(227, 227), class_mode="categorical"
+# )

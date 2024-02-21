@@ -6,4 +6,5 @@ streamlit
 mediapipe
 pillow
 mediapipe
-opencv-python
+opencv-python-
+scikit-learn

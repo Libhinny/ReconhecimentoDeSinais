@@ -1,0 +1,52 @@
+  r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train"
+  ------------------------------------------------------------------------------
+CAMINHOS LIBINI 
+bank_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\bank"
+bus_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\bus"
+car_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\car"
+formation_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\formation"
+hospital_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\hospital"
+I_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\I"
+man_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\man"
+motorcycle_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\motorcycle"
+my_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\my"
+supermarket_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\supermarket"
+we_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\we"
+woman_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\woman"
+you_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\you"
+youPlural_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\you (plural)"
+your_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train\your"
+
+VARIAVEIS DE TREINO LIBINI
+train_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\30 FPS\30 FPS\train"
+val_dir = r"C:\Users\libhi\Projeto_SignLanguage\dataset_SignLanguage\validation\validation"
+
+
+*********************************************************************
+CAMINHOS LORRAYNE
+ r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train"
+----------------------------------------------------------------------------
+
+
+bank_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\bank"
+bus_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\bus"
+car_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\car"
+formation_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\formation"
+hospital_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\hospital"
+I_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\I"
+man_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\man"
+motorcycle_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\motorcycle"
+my_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\my"
+supermarket_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\supermarket"
+we_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\we"
+woman_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\woman"
+you_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\you"
+youPlural_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\you (plural)"
+your_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\your""
+
+
+
+VARIAVEIS LORRAYNE
+
+train_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train"
+val_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\validation\validation"
