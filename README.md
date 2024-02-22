@@ -19,7 +19,7 @@ Este projeto visa promover a inclusão de pessoas que utilizam a linguagem de si
 Utilizamos um modelo de treinamento simétrico para aprimorar o reconhecimento da Libras. Esse modelo visa equilibrar e otimizar a precisão do sistema.
 
 ## Dataset
-O dataset utilizado foi obtido do [Kaggle](https://www.kaggle.com/), composto por frases da Linguagem Brasileira de Sinais. Este conjunto de dados é fundamental para treinar e validar nosso sistema de reconhecimento.
+O dataset utilizado foi obtido do [Kaggle](https://www.kaggle.com/datasets/alvarole/brazilian-sign-language-words-recognition?resource=download), composto por palavras da Linguagem Brasileira de Sinais. Este conjunto de dados é fundamental para treinar e validar nosso sistema de reconhecimento.
 
 ## Contribuidores
 <table align="center">
