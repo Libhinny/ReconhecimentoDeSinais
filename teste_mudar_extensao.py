@@ -2,14 +2,14 @@ import os
 import shutil
 
 # Diretório de origem e destino para treinamento
-your_train_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\test\your"
-new_your_train_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\test\your_renamed"
-os.makedirs(new_your_train_dir, exist_ok=True)
+bank_train_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\bank"
+new_bank_train_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train\bank_renamed"
+os.makedirs(new_bank_train_dir, exist_ok=True)
 
 # Loop through images in the source directory
-for filename in os.listdir(your_train_dir):
+for filename in os.listdir(bank_train_dir):
     # Source path for the image
-    src = os.path.join(your_train_dir, filename)
+    src = os.path.join(bank_train_dir, filename)
 
     # Check if the file is a file (not a directory)
     if os.path.isfile(src):
@@ -23,12 +23,12 @@ for filename in os.listdir(your_train_dir):
 
             # Ensure the new name is unique in the destination directory
             count = 1
-            while os.path.exists(os.path.join(new_your_train_dir, new_name)):
+            while os.path.exists(os.path.join(new_bank_train_dir, new_name)):
                 new_name = f"{base_name}_{count}.jpeg"
                 count += 1
 
             # Destination path for the image with the new name and extension
-            dst = os.path.join(new_your_train_dir, new_name)
+            dst = os.path.join(new_bank_train_dir, new_name)
 
             # Copy the image with the new name and extension to the destination directory
             try:
@@ -37,7 +37,7 @@ for filename in os.listdir(your_train_dir):
                 print(f"Error occurred while copying file: {e}")
 
 # Exibir as imagens renomeadas na nova pasta de treinamento
-renamed_train_files = os.listdir(new_your_train_dir)
+renamed_train_files = os.listdir(new_bank_train_dir)
 print("Imagens renomeadas no diretório de treinamento:")
 for filename in renamed_train_files:
     print(filename)
