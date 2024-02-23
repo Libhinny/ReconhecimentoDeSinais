@@ -1,24 +1,27 @@
-<h1 align="center"> BRAZILIAN SIGN LANGUAGE RECOGNITION SYSTEM </h1>
+# Reconhecimento da Linguagem Brasileira de Sinais
 
-Este projeto tem como objetivo principal promover a inclusão de pessoas que utilizam a linguagem de sinais, bem como aquelas que não a dominam plenamente, propondo um sistema inovador que facilite a comunicação entre ambos os grupos.
+![Libras Logo](https://www.gov.br/mdh/pt-br/ondh/centrais-de-conteudo/imagens/libras.png/@@images/image)
 
-## Metodologia:
+Este projeto visa promover a inclusão de pessoas que utilizam a linguagem de sinais, oferecendo um sistema inovador que facilita a comunicação. Utilizamos diversas ferramentas e bibliotecas avançadas para criar um sistema robusto de reconhecimento da Linguagem Brasileira de Sinais (Libras).
 
+## Tecnologias Utilizadas
 - **Linguagem de Programação:** Python
-- **Bibliotecas Utilizadas:** NumPy, Matplotlib, Pandas, Tensorflow e Sklearn
-- **Ambiente de Desenvolvimento:** Google Colab para colaboração e compartilhamento de códigos.
+- **Bibliotecas:**
+  - [NumPy](https://numpy.org/): Para operações numéricas eficientes.
+  - [Matplotlib](https://matplotlib.org/): Para visualização de dados e gráficos.
+  - [Pandas](https://pandas.pydata.org/): Para manipulação e análise de dados.
+  - [Tensorflow](https://www.tensorflow.org/): Para construção e treinamento de modelos de aprendizado de máquina.
+  - [Scikit-learn (Sklearn)](https://scikit-learn.org/): Para algoritmos de aprendizado de máquina e pré-processamento de dados.
+  - [Mediapipe](https://mediapipe.dev/): Para detecção de pontos-chave em tempo real.
+  - [OpenCV](https://opencv.org/): Para processamento de imagem e vídeo.
 
-## Recursos de Inteligência Artificial:
+## Modelo de Treinamento
+Utilizamos um modelo de treinamento simétrico para aprimorar o reconhecimento da Libras. Esse modelo visa equilibrar e otimizar a precisão do sistema.
 
-- **IA Generativa:** Explorar modelos gerativos para enriquecer a interação.
-- **IA Supervisionada:** Treinar o sistema com dados supervisionados para melhorar a precisão do reconhecimento facial.
-- **Árvore de Decisão e Subtópicos:** Implementar algoritmos de árvores de decisão para otimizar o processo de tomada de decisões.
+## Dataset
+O dataset utilizado foi obtido do [Kaggle](https://www.kaggle.com/datasets/alvarole/brazilian-sign-language-words-recognition?resource=download), composto por palavras da Linguagem Brasileira de Sinais. Este conjunto de dados é fundamental para treinar e validar nosso sistema de reconhecimento.
 
-Este projeto visa não apenas proporcionar uma experiência mais inclusiva para usuários de Libras, mas também demonstrar o potencial transformador da tecnologia na promoção da comunicação e interação entre diferentes comunidades.
-
-Sinta-se à vontade para contribuir, fornecer feedback ou fazer parte deste esforço coletivo em prol da inclusão social através da tecnologia!
-
-## Colaboradores
+## Contribuidores
 <table align="center">
   <tr>    
     <td align="center">
@@ -59,3 +62,7 @@ Sinta-se à vontade para contribuir, fornecer feedback ou fazer parte deste esfo
     </td>
   </tr>
 </table>
+
+Cada contribuidor desempenhou um papel essencial no desenvolvimento e aprimoramento deste projeto.
+
+Sinta-se à vontade para explorar, contribuir e fazer parte deste esforço coletivo em prol da inclusão social através da tecnologia!
