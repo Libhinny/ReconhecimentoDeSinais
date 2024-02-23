@@ -105,6 +105,7 @@ train_supermarket_image = supermarket_image[: int(0.8 * len(supermarket_image))]
 val_supermarket_image = supermarket_image[int(0.8 * len(supermarket_image)) :]
 
 
+
 # Making train val split (we SIGN)
 train_we_image = we_image[: int(0.8 * len(we_image))]
 val_we_image = we_image[int(0.8 * len(we_image)) :]
