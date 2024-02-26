@@ -1,4 +1,4 @@
-# Reconhecimento facial para sudos
+# Reconhecimento facial para surdos
 
 Bem-vindo ao projeto de Reconhecimento facial em LIBRAS! 
 
