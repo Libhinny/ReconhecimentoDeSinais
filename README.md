@@ -1,4 +1,4 @@
-# Reconhecimento de Doenças Cardíacas em LIBRAS
+# Reconhecimento facial para sudos
 
 Bem-vindo ao projeto de Reconhecimento facial em LIBRAS! 
 
