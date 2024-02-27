@@ -1,6 +1,8 @@
 # Reconhecimento da Linguagem Brasileira de Sinais
 
-![Libras Logo](https://www.gov.br/mdh/pt-br/ondh/centrais-de-conteudo/imagens/libras.png/@@images/image)
+<p align="center">
+  <img src="https://www.gov.br/mdh/pt-br/ondh/centrais-de-conteudo/imagens/libras.png/@@images/image" alt="Libras Logo">
+</p>
 
 Este projeto visa promover a inclusão de pessoas que utilizam a linguagem de sinais, oferecendo um sistema inovador que facilita a comunicação. Utilizamos diversas ferramentas e bibliotecas avançadas para criar um sistema de reconhecimento da Linguagem Brasileira de Sinais (Libras).
 
@@ -69,7 +71,9 @@ O dataset utilizado pode ser encontrado [aqui](https://www.kaggle.com/datasets/a
   </tr>
 </table>
 
+<p align="center">
 Cada contribuidor desempenhou um papel essencial no desenvolvimento e aprimoramento deste projeto.
+</p>
 
 
 
