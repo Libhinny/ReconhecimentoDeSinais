@@ -50,3 +50,10 @@ VARIAVEIS LORRAYNE
 
 train_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\30 FPS\30 FPS\train"
 val_dir = r"C:\Users\fllsa\Desktop\redesneurais\ReconhecimentoDeSinais\dataset_SignLanguage1\validation\validation"
+
+--------------------------------------------------------------------------------------------------------------------
+
+VARIAVEIS YTALO
+
+formation_train_dir = r"C:\Users\ytalo\Downloads\dataset_Libras\30 FPS\30 FPS\train\formation"
+new_formation_train_dir = r"C:\Users\ytalo\Downloads\dataset_Libras\30 FPS\30 FPS\train\formation_renamed"

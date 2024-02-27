@@ -1,8 +1,10 @@
 # Reconhecimento da Linguagem Brasileira de Sinais
 
-![Libras Logo](https://www.gov.br/mdh/pt-br/ondh/centrais-de-conteudo/imagens/libras.png/@@images/image)
+<p align="center">
+  <img src="https://www.gov.br/mdh/pt-br/ondh/centrais-de-conteudo/imagens/libras.png/@@images/image" alt="Libras Logo">
+</p>
 
-Este projeto visa promover a inclusão de pessoas que utilizam a linguagem de sinais, oferecendo um sistema inovador que facilita a comunicação. Utilizamos diversas ferramentas e bibliotecas avançadas para criar um sistema robusto de reconhecimento da Linguagem Brasileira de Sinais (Libras).
+Este projeto visa promover a inclusão de pessoas que utilizam a linguagem de sinais, oferecendo um sistema inovador que facilita a comunicação. Utilizamos diversas ferramentas e bibliotecas avançadas para criar um sistema de reconhecimento da Linguagem Brasileira de Sinais (Libras).
 
 ## Tecnologias Utilizadas
 - **Linguagem de Programação:** Python
@@ -16,10 +18,16 @@ Este projeto visa promover a inclusão de pessoas que utilizam a linguagem de si
   - [OpenCV](https://opencv.org/): Para processamento de imagem e vídeo.
 
 ## Modelo de Treinamento
-Utilizamos um modelo de treinamento simétrico para aprimorar o reconhecimento da Libras. Esse modelo visa equilibrar e otimizar a precisão do sistema.
+Utilizamos um modelo de treinamento simétrico e uma Rede Neural do tipo Perceptron Multicamadas (MLP) para aprimorar o reconhecimento da Libras. Esse modelo visa equilibrar e otimizar a precisão do sistema.
 
 ## Dataset
 O dataset utilizado foi obtido do [Kaggle](https://www.kaggle.com/datasets/alvarole/brazilian-sign-language-words-recognition?resource=download), composto por palavras da Linguagem Brasileira de Sinais. Este conjunto de dados é fundamental para treinar e validar nosso sistema de reconhecimento.
+
+## Artigo LaTeX
+O artigo LaTeX relacionado a este projeto pode ser encontrado [aqui](link_para_o_artigo_latex).
+
+## Referência do Dataset
+O dataset utilizado pode ser encontrado [aqui](https://www.kaggle.com/datasets/alvarole/brazilian-sign-language-words-recognition?resource=download).
 
 ## Contribuidores
 <table align="center">
@@ -63,6 +71,9 @@ O dataset utilizado foi obtido do [Kaggle](https://www.kaggle.com/datasets/alvar
   </tr>
 </table>
 
+<p align="center">
 Cada contribuidor desempenhou um papel essencial no desenvolvimento e aprimoramento deste projeto.
+</p>
 
-Sinta-se à vontade para explorar, contribuir e fazer parte deste esforço coletivo em prol da inclusão social através da tecnologia!
+
+
