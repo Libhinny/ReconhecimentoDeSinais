@@ -44,13 +44,13 @@ hospital_image = os.listdir(hospital_dir)
 I_image = os.listdir(I_dir)
 man_image = os.listdir(man_dir)
 motorcycle_image = os.listdir(motorcycle_dir)
-my_image =os.listdir(my_dir)
-supermarket_image=os.listdir(supermarket_dir)
-we_image=os.listdir(we_dir)
-woman_image=os.listdir(woman_dir)
-you_image=os.listdir(you_dir)
-youPlural_image=os.listdir(youPlural_dir)
-your_image=os.listdir(your_dir)
+my_image = os.listdir(my_dir)
+supermarket_image = os.listdir(supermarket_dir)
+we_image = os.listdir(we_dir)
+woman_image = os.listdir(woman_dir)
+you_image = os.listdir(you_dir)
+youPlural_image = os.listdir(youPlural_dir)
+your_image = os.listdir(your_dir)
 
 print(
     len(bus_image),
@@ -60,7 +60,14 @@ print(
     len(hospital_image),
     len(I_image),
     len(man_image),
-    len(motorcycle_image),len(my_image), len(supermarket_image), len(we_image), len(woman_image), len(you_image), len(youPlural_image), len(your_image)
+    len(motorcycle_image),
+    len(my_image),
+    len(supermarket_image),
+    len(we_image),
+    len(woman_image),
+    len(you_image),
+    len(youPlural_image),
+    len(your_image),
 )
 
 # Making train val split (bank SIGN)
@@ -335,8 +342,8 @@ for image in val_motorcycle_image:
         shutil.copy(src, dst)
     except shutil.SameFileError:
         pass
-    
-            # Copy images to train directory (my)
+
+        # Copy images to train directory (my)
 for image in train_my_image:
     src = my_dir + "/" + image
     dst = train_dir + "/my_renamed"
@@ -345,7 +352,7 @@ for image in train_my_image:
     except shutil.SameFileError:
         pass
 
-# Copy image to validation directory (my)    
+# Copy image to validation directory (my)
 for image in val_my_image:
     src = my_dir + "/" + image
     dst = val_dir + "/my_renamed"
@@ -354,8 +361,7 @@ for image in val_my_image:
     except shutil.SameFileError:
         pass
 
-    
-            # Copy images to train directory (supermarket)
+        # Copy images to train directory (supermarket)
 for image in train_supermarket_image:
     src = supermarket_dir + "/" + image
     dst = train_dir + "/supermarket_renamed"
@@ -364,7 +370,7 @@ for image in train_supermarket_image:
     except shutil.SameFileError:
         pass
 
-# Copy image to validation directory (supermarket)    
+# Copy image to validation directory (supermarket)
 for image in val_supermarket_image:
     src = supermarket_dir + "/" + image
     dst = val_dir + "/supermarket_renamed"
@@ -373,8 +379,7 @@ for image in val_supermarket_image:
     except shutil.SameFileError:
         pass
 
-    
-            # Copy images to train directory (we)
+        # Copy images to train directory (we)
 for image in train_we_image:
     src = we_dir + "/" + image
     dst = train_dir + "/we_renamed"
@@ -383,7 +388,7 @@ for image in train_we_image:
     except shutil.SameFileError:
         pass
 
-# Copy image to validation directory (we)    
+# Copy image to validation directory (we)
 for image in val_we_image:
     src = we_dir + "/" + image
     dst = val_dir + "/we_renamed"
@@ -391,9 +396,8 @@ for image in val_we_image:
         shutil.copy(src, dst)
     except shutil.SameFileError:
         pass
-    
-      
-            # Copy images to train directory (woman)
+
+        # Copy images to train directory (woman)
 for image in train_woman_image:
     src = woman_dir + "/" + image
     dst = train_dir + "/woman_renamed"
@@ -402,7 +406,7 @@ for image in train_woman_image:
     except shutil.SameFileError:
         pass
 
-# Copy image to validation directory (woman)    
+# Copy image to validation directory (woman)
 for image in val_woman_image:
     src = woman_dir + "/" + image
     dst = val_dir + "/woman_renamed"
@@ -410,8 +414,8 @@ for image in val_woman_image:
         shutil.copy(src, dst)
     except shutil.SameFileError:
         pass
-    
-     # Copy images to train directory (you)
+
+    # Copy images to train directory (you)
 for image in train_you_image:
     src = you_dir + "/" + image
     dst = train_dir + "/you_renamed"
@@ -420,7 +424,7 @@ for image in train_you_image:
     except shutil.SameFileError:
         pass
 
-# Copy image to validation directory (you)    
+# Copy image to validation directory (you)
 for image in val_you_image:
     src = you_dir + "/" + image
     dst = val_dir + "/you_renamed"
@@ -429,8 +433,7 @@ for image in val_you_image:
     except shutil.SameFileError:
         pass
 
-
-     # Copy images to train directory (youPlural)
+    # Copy images to train directory (youPlural)
 for image in train_youPlural_image:
     src = youPlural_dir + "/" + image
     dst = train_dir + "/you (plural)_renamed"
@@ -439,7 +442,7 @@ for image in train_youPlural_image:
     except shutil.SameFileError:
         pass
 
-# Copy image to validation directory (youPlural)    
+# Copy image to validation directory (youPlural)
 for image in val_youPlural_image:
     src = youPlural_dir + "/" + image
     dst = val_dir + "/you (plural)_renamed"
@@ -447,8 +450,8 @@ for image in val_youPlural_image:
         shutil.copy(src, dst)
     except shutil.SameFileError:
         pass
-    
-         # Copy images to train directory (your)
+
+        # Copy images to train directory (your)
 for image in train_your_image:
     src = your_dir + "/" + image
     dst = train_dir + "/your_renamed"
@@ -457,7 +460,7 @@ for image in train_your_image:
     except shutil.SameFileError:
         pass
 
-# Copy image to validation directory (your)    
+# Copy image to validation directory (your)
 for image in val_your_image:
     src = your_dir + "/" + image
     dst = val_dir + "/your_renamed"
@@ -465,6 +468,7 @@ for image in val_your_image:
         shutil.copy(src, dst)
     except shutil.SameFileError:
         pass
+
 
 # Plot Image (BUS)
 def view_random_image_bus(bus_dir, bus_image):
@@ -570,6 +574,7 @@ def view_random_image_man(man_dir, man_image):
 
 view_random_image_man(man_dir, "man_renamed")
 
+
 # Plot Image (motorcycle)
 def view_random_image_motorcycle(motorcycle_dir, motorcycle_image):
     target_folder = motorcycle_dir + "/"
@@ -598,6 +603,7 @@ def view_random_image_my(my_dir, my_image):
 
 
 view_random_image_my(my_dir, "my_renamed")
+
 
 # Plot Image (supermarket)
 def view_random_image_supermarket(supermarket_dir, supermarket_image):
@@ -628,6 +634,7 @@ def view_random_image_we(we_dir, we_image):
 
 view_random_image_we(we_dir, "we_renamed")
 
+
 # Plot Image (woman)
 def view_random_image_woman(woman_dir, woman_image):
     target_folder = woman_dir + "/"
@@ -641,6 +648,7 @@ def view_random_image_woman(woman_dir, woman_image):
 
 
 view_random_image_woman(woman_dir, "woman_renamed")
+
 
 # Plot Image (you)
 def view_random_image_you(you_dir, you_image):
@@ -656,6 +664,7 @@ def view_random_image_you(you_dir, you_image):
 
 view_random_image_you(you_dir, "you_renamed")
 
+
 # Plot Image (youPlural)
 def view_random_image_youPlural(youPlural_dir, youPlural_image):
     target_folder = youPlural_dir + "/"
@@ -669,6 +678,7 @@ def view_random_image_youPlural(youPlural_dir, youPlural_image):
 
 
 view_random_image_youPlural(youPlural_dir, "you (plural)_renamed")
+
 
 # Plot Image (your)
 def view_random_image_your(your_dir, your_image):
@@ -694,3 +704,29 @@ train_dataset = train_data_gen.flow_from_directory(
 val_dataset = val_data_gen.flow_from_directory(
     val_dir, target_size=(227, 227), class_mode="categorical"
 )
+
+
+# Criar o modelo
+model = Sequential()
+model.add(Flatten(input_shape=(227, 227, 3)))
+model.add(Dense(128, activation="relu"))
+model.add(Dropout(0.5))  # para evitar overfit
+model.add(Dense(64, activation="relu"))
+model.add(Dense(15, activation="softmax"))  # ou o número real de classes que você tem
+
+# Compilar o modelo com uma taxa de aprendizado específica (por exemplo, 0.001)
+opt = Adam(learning_rate=0.001)
+model.compile(optimizer=opt, loss="categorical_crossentropy", metrics=["accuracy"])
+
+
+model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
+# Ajuste o número de épocas e outros hiperparâmetros conforme necessário
+history = model.fit(train_dataset, epochs=10, validation_data=val_dataset)
+# Visualizar a perda durante o treinamento
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Training Loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Validation'], loc='upper left')
+plt.show()

@@ -10,7 +10,11 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.image as mpimg
 import random
-
+from sklearn.metrics import confusion_matrix, classification_report
+import seaborn as sns
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Flatten, Dense, Dropout
 
 for dirname, _, filenames in os.walk(
     "C:/Users/fllsa/Desktop/redesneurais/ReconhecimentoDeSinais/dataset_SignLanguage1/30 FPS/30 FPS/train"
@@ -695,3 +699,77 @@ train_dataset = train_data_gen.flow_from_directory(
 val_dataset = val_data_gen.flow_from_directory(
     val_dir, target_size=(227, 227), class_mode="categorical"
 )
+
+
+# Criar o modelo (exemplo)
+model = Sequential()
+model.add(Flatten(input_shape=(227, 227, 3)))
+model.add(Dense(128, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(15, activation='softmax'))  # ou o número real de classes que você tem
+model.summary()
+
+# Definir otimizador, função de perda e métricas
+optimizer = Adam(learning_rate=0.001)
+model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
+
+# Ajuste o número de épocas e outros hiperparâmetros conforme necessário
+history = model.fit(train_dataset, epochs=4, validation_data=val_dataset)
+
+# Visualizar a perda durante o treinamento
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Training Loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Validation'], loc='upper left')
+plt.show()
+
+# Realizar a previsão para o conjunto de teste
+previsoes = model.predict(val_dataset)
+
+# Converter as previsões em classes (índice do valor máximo)
+previsoes_classes = np.argmax(previsoes, axis=1)
+
+# Obter as classes verdadeiras do conjunto de validação
+true_classes = val_dataset.classes
+
+conf_mat = confusion_matrix(true_classes, previsoes_classes)
+plt.figure(figsize=(12, 8))
+sns.heatmap(conf_mat, annot=True, fmt='d', cmap='Blues', xticklabels=train_dataset.class_indices.keys(), yticklabels=train_dataset.class_indices.keys())
+plt.xlabel('Predicted')
+plt.ylabel('True')
+plt.title('Confusion Matrix')
+plt.show()
+
+# Exibir o relatório de classificação
+print(classification_report(true_classes, previsoes_classes, target_names=train_dataset.class_indices.keys()))
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report, confusion_matrix
+
+# Calcular e exibir métricas específicas
+acuracia = accuracy_score(true_classes, previsoes_classes)
+precisao = precision_score(true_classes, previsoes_classes, average='macro')
+sensibilidade = recall_score(true_classes, previsoes_classes, average='macro')
+f1 = f1_score(true_classes, previsoes_classes, average='macro')
+
+print("Acurácia:", acuracia)
+print("Precisão (Macro):", precisao)
+print("Sensibilidade (Recall Macro):", sensibilidade)
+print("F1 Score (Macro):", f1)
+
+import matplotlib.pyplot as plt
+
+# Valores das métricas
+metric_values = [acuracia, precisao, sensibilidade, f1]
+metric_names = ['Accuracy', 'Precision (Macro)', 'Recall (Macro)', 'F1 Score (Macro)']
+
+# Criar um gráfico de barras
+plt.figure(figsize=(10, 6))
+plt.bar(metric_names, metric_values, color=['blue', 'green', 'orange', 'red'])
+plt.ylim([0, 1])  # Definir o intervalo do eixo y de 0 a 1 (pois são métricas de porcentagem)
+plt.title('Classification Metrics')
+plt.xlabel('Metrics')
+plt.ylabel('Values')
+plt.show()
