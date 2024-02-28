@@ -1,4 +1,4 @@
-# Reconhecimento da Linguagem Brasileira de Sinais
+# Reconhecimento da Língua Brasileira de Sinais
 
 <p align="center">
   <img src="https://www.gov.br/mdh/pt-br/ondh/centrais-de-conteudo/imagens/libras.png/@@images/image" alt="Libras Logo">
