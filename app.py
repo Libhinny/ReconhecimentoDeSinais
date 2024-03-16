@@ -1,166 +1,124 @@
-import pandas as pd
+import cv2
 import numpy as np
 import streamlit as st
-import tensorflow as tf
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score
+from tensorflow.keras.models import load_model
+import mediapipe as mp
+from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 
-# URL do conjunto de dados Heart Disease do UCI ML Repository
-url = "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data"
-column_names = ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal", "target"]
+# Carregar o modelo treinado
+checkpoint_path = 'checkpointCNN/best_model_mlp.h5'
+final_model_mlp = load_model(checkpoint_path)
 
-@st.cache_data()
-def load_data():
-    dados = pd.read_csv(url, names=column_names)
+label_to_text = {0: 'raiva', 1: 'nojo', 2: 'medo', 3: 'feliz', 4: 'triste', 5: 'surpreso', 6: 'neutro'}
+
+# Função para processar o frame de vídeo e fazer a previsão da emoção
+def predict_emotion(frame):
+    # Redimensionar o frame para o tamanho esperado pelo modelo
+    resized_frame = cv2.resize(frame, (48, 48))
     
-    # Tratamento de valores ausentes
-    dados.replace('?', np.nan, inplace=True)
-    dados = dados.apply(pd.to_numeric, errors='coerce')
-    dados.dropna(inplace=True)
+    # Converter o frame para escala de cinza
+    gray_frame = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2GRAY)
     
-    return dados
-
-@st.cache_data()
-def train_model(X_train_std, y_train):
-    # Construir o modelo MLP
-    model = tf.keras.models.Sequential()
-    model.add(tf.keras.layers.Dense(units=128, input_dim=X_train_std.shape[1], activation='relu'))
-    model.add(tf.keras.layers.Dense(units=1, activation='relu'))
-    model.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
-    opt = tf.keras.optimizers.Adam(learning_rate=0.00001)
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-    # Treinar o modelo
-    history = model.fit(X_train_std, y_train, validation_split=0.21, epochs=100, batch_size=32, verbose=1)
+    # Normalizar os pixels da imagem
+    normalized_frame = gray_frame.astype('float32') / 255.0
     
-    return model, history
-
-# Carregar dados
-dados = load_data()
-
-# Separar features e targets
-X = dados.iloc[:, 0:14].values
-y = dados['target'].values
-
-# Dividir dados em conjuntos de treinamento e teste
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Padronizar os dados
-scaler = StandardScaler()
-X_train_std = scaler.fit_transform(X_train)
-X_test_std = scaler.transform(X_test)
-
-# Treinar o modelo
-model, history = train_model(X_train_std, y_train)
-
-# Função para exibir a perda durante o treinamento
-def exibePerda(fig):
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('Training Loss')
-    plt.ylabel('Loss')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Validation'], loc='upper left')
-    st.pyplot()
-
-# Novo conjunto de dados de teste
-novo_teste = np.array([[45.0, 1.0, 4.0, 160.0, 225.0, 0.0, 2.0, 156.0, 1.0, 3.3, 3.0, 0, 0, 0]])
-
-# Previsão usando o modelo
-saida_predita = model.predict(novo_teste)
-
-# Se for uma saída binária (camada de saída com ativação sigmoid)
-# Converta a saída para 0 ou 1 usando um limiar (por exemplo, 0.5)
-saida_binaria = (saida_predita > 0.5).astype(int)
-
-print(saida_binaria)
-
-# Testar o modelo
-y_pred = np.argmax(model.predict(X_test_std), axis=-1)
-
-# Função para exibir a matriz de confusão e a precisão do modelo
-def display_results(fig):
-    y_pred = np.argmax(model.predict(X_test_std), axis=-1)
-    cm = confusion_matrix(y_test, y_pred)
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=np.unique(y_test))
-    disp.plot()
-    plt.title('Confusion Matrix')
-    plt.xlabel('Predicted Class')
-    plt.ylabel('True Class')
-    st.pyplot()
-    acc = accuracy_score(y_test, y_pred)
-    st.write(f'Model Accuracy: {acc}')
-
-# Testar o modelo
-def exibiracuracia(fig):
-    acc = accuracy_score(y_test, y_pred)
-    st.write(f'Model Accuracy: {acc}')
-    plt.scatter(y_test, model.predict(X_test_std), alpha=0.5)
-    plt.title('Previsões vs. Observações Reais')
-    plt.xlabel('Observações Reais')
-    plt.ylabel('Previsões do Modelo')
-    st.pyplot()
-
-# Função para exibir um histograma das probabilidades previstas
-def histogrema(fig):
-    plt.hist(model.predict(X_test_std), bins=20, edgecolor='black')
-    plt.title('Histograma das Probabilidades Previstas')
-    plt.xlabel('Probabilidades Previstas')
-    plt.ylabel('Frequência')
-    st.pyplot()
-
-#-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-st.sidebar.image(
-    "https://cdn.sanity.io/images/tlr8oxjg/production/ada93729daf922ad0318c8c0295e5cb477921808-1456x816.png?w=3840&q=100&fit=clip&auto=format"
-)
-st.sidebar.header("Redes Neurais")
-st.sidebar.title("Heart Disease Prediction App")
-
-info = """
-Este aplicativo foi desenvolvido para ajudar na previsão de doenças cardíacas com base em 
-dados clínicos. Utilizando técnicas de aprendizado de máquina, o aplicativo analisa informações 
-como idade, sexo, pressão sanguínea, colesterol e outros fatores relevantes para determinar a 
-probabilidade de uma pessoa ter doença cardíaca.
-"""
-
-st.sidebar.info(info)
-
-
-st.title("Heart Disease Prediction :red[Prediction] :bar_chart: :chart_with_upwards_trend:  :heart:")
-st.markdown("")
-
-tab1, tab2 = st.tabs(["Data :clipboard:", "Performance :bar_chart:"])
-fig, ax = plt.subplots(figsize=(4, 4), dpi=10)
-st.set_option('deprecation.showPyplotGlobalUse', False)
-
-
-with tab1:
-    data_df = dados.head()
-    st.header("Dataset")
-    st.write(data_df)
-with tab2:
-    st.header("Confusion Matrix | Feature Importances")
-    col1, col2 = st.columns(2)
+    # Pré-processar o frame para o modelo
+    preprocessed_frame = normalized_frame.reshape(1, 48, 48, 1)
     
-    with col1:
-        
-        st.subheader("Training Loss")
-        exibePerda(fig)
-        st.subheader("Confusion Matrix")
-        display_results(fig)
-        st.subheader("Model Accuracy")
-        exibiracuracia(fig)
-        st.subheader("Histogram of Predicted Probabilities")
-        histogrema(fig)
-
+    # Fazer a previsão
+    predicted_class = final_model_mlp.predict(preprocessed_frame).argmax()
+    predicted_emotion = label_to_text[predicted_class]
     
-   
+    return predicted_emotion
 
+# Função para reconhecer expressão facial em uma imagem de rosto
+def recognize_facial_expression(face_image):
+    # Fazer a previsão da emoção
+    predicted_emotion = predict_emotion(face_image)
+    return predicted_emotion
+
+# Função para redimensionar a imagem
+def resize_image(image, target_size):
+    # Converter a imagem em uma matriz numpy
+    np_image = np.array(image)
+    
+    # Redimensionar a imagem
+    resized_image = cv2.resize(np_image, target_size)
+    
+    return resized_image
+
+# Definir a classe do transformador de vídeo
+class VideoTransformer(VideoTransformerBase):
+    def __init__(self):
+        # Inicializar o modelo de detecção de rostos
+        self.face_detection = mp.solutions.face_detection.FaceDetection(min_detection_confidence=0.5)
         
+    def transform(self, frame):
+        # Converter o frame para um array numpy
+        frame_bgr = np.array(frame.to_image())
+
+        # Converter de BGR para RGB
+        frame_rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
         
+        # Detectar rostos no frame
+        results = self.face_detection.process(frame_rgb)
+        if results.detections:
+            for detection in results.detections:
+                bboxC = detection.location_data.relative_bounding_box
+                ih, iw, _ = frame_rgb.shape
+                x, y, w, h = int(bboxC.xmin * iw), int(bboxC.ymin * ih), \
+                             int(bboxC.width * iw), int(bboxC.height * ih)
+
+                # Recortar a região do rosto
+                face_roi = frame_rgb[y:y+h, x:x+w]
+                
+                # Reconhecer a expressão facial
+                predicted_emotion = recognize_facial_expression(face_roi)
+                
+                # Desenhar a emoção detectada no frame
+                frame_rgb = cv2.putText(frame_rgb, predicted_emotion, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36, 255, 12), 2)
+                print(predicted_emotion)
         
-        
-        
+        return frame_rgb
+
+# Definir o título da página
+st.title('Reconhecimento de Expressões Faciais')
+
+# Breve descrição do projeto
+st.write("""
+## Reconhecimento Facial - Projeto
+
+Este projeto visa desenvolver um programa capaz de utilizar uma rede neural treinada para detectar expressões faciais nos rostos dos usuários por meio de suas câmeras. Usando um modelo de rede neural CNN. 
+""")
+
+# Iniciar o streamlit webrtc
+webrtc_streamer(key="emotion-recognition-1", video_processor_factory=VideoTransformer)
+
+# Carregar a imagem enviada pelo usuário
+uploaded_file = st.file_uploader("Enviar uma foto do rosto", type=['jpg', 'png', 'jpeg'])
+
+# Verificar se um arquivo foi enviado
+if uploaded_file is not None:
+    # Ler a imagem
+    image_bytes = uploaded_file.getvalue()
+    image_array = np.frombuffer(image_bytes, np.uint8)
+    image = cv2.imdecode(image_array, cv2.IMREAD_UNCHANGED)
+    
+    # Redimensionar a imagem para o tamanho esperado
+    resized_image = resize_image(image, (48, 48))
+    
+    # Exibir a imagem redimensionada
+    st.image(uploaded_file, caption='Imagem redimensionada', use_column_width=True)
+
+    # Fazer a previsão da emoção
+    predicted_emotion = recognize_facial_expression(resized_image)
+    st.write(f'Expressão facial detectada: {predicted_emotion}')
+
+# Integrantes do projeto
+st.write("""
+## Integrantes
+
+- Anabel Marinho Soares
+- Nicolas Emanuel Alves Costa
+- Thiago Luan Moreira Sousa
+""")
