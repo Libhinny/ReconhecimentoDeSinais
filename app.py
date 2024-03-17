@@ -9,10 +9,27 @@ from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 checkpoint_path = 'checkpointCNN/best_model_mlp.h5'
 final_model_mlp = load_model(checkpoint_path)
 
-label_to_text = {0: 'raiva', 1: 'nojo', 2: 'medo', 3: 'feliz', 4: 'triste', 5: 'surpreso', 6: 'neutro'}
+label_to_text = {
+    0: 'bus',
+    1: 'bank',
+    2: 'car',
+    3: 'formation',
+    4: 'hospital',
+    5: 'I',
+    6: 'man',
+    7: 'motorcycle',
+    8: 'my',
+    9: 'supermarket',
+    10: 'we',
+    11: 'woman',
+    12: 'you',
+    13: 'your',
+    14: 'bus',
+    15: 'you (plural)'
+}
 
-# Função para processar o frame de vídeo e fazer a previsão da emoção
-def predict_emotion(frame):
+# Função para processar o frame de vídeo e fazer a previsão do objeto
+def predict_object(frame):
     # Redimensionar o frame para o tamanho esperado pelo modelo
     resized_frame = cv2.resize(frame, (48, 48))
     
@@ -27,31 +44,28 @@ def predict_emotion(frame):
     
     # Fazer a previsão
     predicted_class = final_model_mlp.predict(preprocessed_frame).argmax()
-    predicted_emotion = label_to_text[predicted_class]
+    predicted_object = label_to_text[predicted_class]
     
-    return predicted_emotion
+    return predicted_object
 
-# Função para reconhecer expressão facial em uma imagem de rosto
-def recognize_facial_expression(face_image):
-    # Fazer a previsão da emoção
-    predicted_emotion = predict_emotion(face_image)
-    return predicted_emotion
+# Função para reconhecer o objeto em uma imagem
+def recognize_object(image):
+    # Fazer a previsão do objeto
+    predicted_object = predict_object(image)
+    return predicted_object
 
 # Função para redimensionar a imagem
 def resize_image(image, target_size):
-    # Converter a imagem em uma matriz numpy
-    np_image = np.array(image)
-    
     # Redimensionar a imagem
-    resized_image = cv2.resize(np_image, target_size)
+    resized_image = cv2.resize(image, target_size)
     
     return resized_image
 
 # Definir a classe do transformador de vídeo
 class VideoTransformer(VideoTransformerBase):
-    def __init__(self):
-        # Inicializar o modelo de detecção de rostos
-        self.face_detection = mp.solutions.face_detection.FaceDetection(min_detection_confidence=0.5)
+    def _init_(self):
+        # Inicializar o modelo de detecção de mãos
+        self.hand_detection = mp.solutions.hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5)
         
     def transform(self, frame):
         # Converter o frame para um array numpy
@@ -60,65 +74,48 @@ class VideoTransformer(VideoTransformerBase):
         # Converter de BGR para RGB
         frame_rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
         
-        # Detectar rostos no frame
-        results = self.face_detection.process(frame_rgb)
-        if results.detections:
-            for detection in results.detections:
-                bboxC = detection.location_data.relative_bounding_box
-                ih, iw, _ = frame_rgb.shape
-                x, y, w, h = int(bboxC.xmin * iw), int(bboxC.ymin * ih), \
-                             int(bboxC.width * iw), int(bboxC.height * ih)
-
-                # Recortar a região do rosto
-                face_roi = frame_rgb[y:y+h, x:x+w]
+        # Detectar mãos no frame
+        results = self.hand_detection.process(frame_rgb)
+        if results.multi_hand_landmarks:
+            for hand_landmarks in results.multi_hand_landmarks:
+                # Extrair coordenadas da mão
+                hand_points = np.array([[lmk.x, lmk.y] for lmk in hand_landmarks.landmark]).astype(np.float32)
+                xmin, ymin = np.min(hand_points, axis=0)
+                xmax, ymax = np.max(hand_points, axis=0)
+                xmin, ymin, xmax, ymax = int(xmin * frame_rgb.shape[1]), int(ymin * frame_rgb.shape[0]), \
+                                         int(xmax * frame_rgb.shape[1]), int(ymax * frame_rgb.shape[0])
                 
-                # Reconhecer a expressão facial
-                predicted_emotion = recognize_facial_expression(face_roi)
+                # Recortar a região da mão
+                hand_roi = frame_rgb[ymin:ymax, xmin:xmax]
                 
-                # Desenhar a emoção detectada no frame
-                frame_rgb = cv2.putText(frame_rgb, predicted_emotion, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36, 255, 12), 2)
-                print(predicted_emotion)
+                # Reconhecer o objeto (mão)
+                predicted_object = recognize_object(hand_roi)
+                
+                # Desenhar a mão detectada no frame
+                frame_rgb = cv2.putText(frame_rgb, predicted_object, (xmin, ymin - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36, 255, 12), 2)
+                print(predicted_object)
         
         return frame_rgb
 
 # Definir o título da página
-st.title('Reconhecimento de Expressões Faciais')
+st.title('Reconhecimento de Mãos')
 
 # Breve descrição do projeto
 st.write("""
-## Reconhecimento Facial - Projeto
+## Reconhecimento de Mãos - Projeto
 
-Este projeto visa desenvolver um programa capaz de utilizar uma rede neural treinada para detectar expressões faciais nos rostos dos usuários por meio de suas câmeras. Usando um modelo de rede neural CNN. 
+Este projeto visa desenvolver um programa capaz de utilizar uma rede neural treinada para detectar mãos em tempo real por meio da câmera do usuário. Usando um modelo de rede neural CNN. 
 """)
 
 # Iniciar o streamlit webrtc
-webrtc_streamer(key="emotion-recognition-1", video_processor_factory=VideoTransformer)
-
-# Carregar a imagem enviada pelo usuário
-uploaded_file = st.file_uploader("Enviar uma foto do rosto", type=['jpg', 'png', 'jpeg'])
-
-# Verificar se um arquivo foi enviado
-if uploaded_file is not None:
-    # Ler a imagem
-    image_bytes = uploaded_file.getvalue()
-    image_array = np.frombuffer(image_bytes, np.uint8)
-    image = cv2.imdecode(image_array, cv2.IMREAD_UNCHANGED)
-    
-    # Redimensionar a imagem para o tamanho esperado
-    resized_image = resize_image(image, (48, 48))
-    
-    # Exibir a imagem redimensionada
-    st.image(uploaded_file, caption='Imagem redimensionada', use_column_width=True)
-
-    # Fazer a previsão da emoção
-    predicted_emotion = recognize_facial_expression(resized_image)
-    st.write(f'Expressão facial detectada: {predicted_emotion}')
+webrtc_streamer(key="hand-recognition-1", video_processor_factory=VideoTransformer)
 
 # Integrantes do projeto
 st.write("""
 ## Integrantes
 
-- Anabel Marinho Soares
-- Nicolas Emanuel Alves Costa
-- Thiago Luan Moreira Sousa
+- Lorrayne
+- Libhinny
+- Samira
+- Ytalo
 """)
