@@ -4,10 +4,11 @@ import streamlit as st
 from tensorflow.keras.models import load_model
 import mediapipe as mp
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
+import time
 
 # Carregar o modelo treinado
-checkpoint_path = 'checkpointCNN/best_model_mlp.h5'
-final_model_mlp = load_model(checkpoint_path)
+# checkpoint_path = 'checkpointCNN/best_model_mlp.h5'
+# final_model_mlp = load_model(checkpoint_path)
 
 label_to_text = {
     0: 'bus',
@@ -97,11 +98,13 @@ class VideoTransformer(VideoTransformerBase):
         
         return frame_rgb
 
+#exibir imagem
+st.sidebar.image("https://www.mjvinnovation.com/wp-content/uploads/2021/07/mjv_blogpost_redes_neurais_ilustracao_cerebro-01-1024x1020.png")
 # Definir o título da página
-st.title('Reconhecimento de Mãos')
+st.sidebar.title('Reconhecimento de :red[Mãos] :ok_hand:')
 
 # Breve descrição do projeto
-st.write("""
+st.sidebar.info("""
 ## Reconhecimento de Mãos - Projeto
 
 Este projeto visa desenvolver um programa capaz de utilizar uma rede neural treinada para detectar mãos em tempo real por meio da câmera do usuário. Usando um modelo de rede neural CNN. 
@@ -111,7 +114,7 @@ Este projeto visa desenvolver um programa capaz de utilizar uma rede neural trei
 webrtc_streamer(key="hand-recognition-1", video_processor_factory=VideoTransformer)
 
 # Integrantes do projeto
-st.write("""
+st.sidebar.write("""
 ## Integrantes
 
 - Lorrayne
