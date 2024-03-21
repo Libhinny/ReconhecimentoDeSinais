@@ -7,8 +7,8 @@ from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 import time
 
 # Carregar o modelo treinado
-# checkpoint_path = 'checkpointCNN/best_model_mlp.h5'
-# final_model_mlp = load_model(checkpoint_path)
+checkpoint_path = 'checkpointCNN/model.h5'
+final_model_mlp = load_model(checkpoint_path)
 
 label_to_text = {
     0: 'bus',
@@ -101,7 +101,7 @@ class VideoTransformer(VideoTransformerBase):
 #exibir imagem
 st.sidebar.image("https://www.mjvinnovation.com/wp-content/uploads/2021/07/mjv_blogpost_redes_neurais_ilustracao_cerebro-01-1024x1020.png")
 # Definir o título da página
-st.sidebar.title('Reconhecimento de :red[Mãos] :ok_hand:')
+st.sidebar.title('Reconhecimento de :red[Sinais] :ok_hand:')
 
 # Breve descrição do projeto
 st.sidebar.info("""
