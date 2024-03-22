@@ -5,29 +5,17 @@ from tensorflow.keras.models import load_model
 import mediapipe as mp
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 import time
+import h5py
 
 # Carregar o modelo treinado
-checkpoint_path = 'checkpointCNN/model.h5'
-final_model_mlp = load_model(checkpoint_path)
 
-label_to_text = {
-    0: 'bus',
-    1: 'bank',
-    2: 'car',
-    3: 'formation',
-    4: 'hospital',
-    5: 'I',
-    6: 'man',
-    7: 'motorcycle',
-    8: 'my',
-    9: 'supermarket',
-    10: 'we',
-    11: 'woman',
-    12: 'you',
-    13: 'your',
-    14: 'bus',
-    15: 'you (plural)'
-}
+# Abra o arquivo diretamente com uma codificação específica
+with h5py.File('model.h5', 'r', driver='core') as f:
+    # Carregue o modelo
+    model = load_model(f, compile=False)
+
+label_to_text =  {'bus': 0 , 'bank': 1 , 'car' : 2 , 'formation': 3 , 'hospital' : 4 ,'I' : 5 , 'man' : 6 , 'motorcycle' : 7 , 'my' : 8 , 'supermarket' : 9 , 'we' : 10 ,
+             'woman'  : 11 , 'you' : 12 , 'you (plural)' : 13  , 'your' : 14 }
 
 # Função para processar o frame de vídeo e fazer a previsão do objeto
 def predict_object(frame):
