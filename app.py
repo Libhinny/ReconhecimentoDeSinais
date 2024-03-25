@@ -21,7 +21,7 @@ def predict_object(hand_roi):
     normalized_hand = resized_hand.astype('float32') / 255.0
     
     
-    predicted_class = final_model.predict(np.expand_dims(normalized_hand, axis=0)).argmax()
+    predicted_class = model.predict(np.expand_dims(normalized_hand, axis=0)).argmax()
     predicted_object = label_to_text[predicted_class]
     
     return predicted_object
