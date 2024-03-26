@@ -5,6 +5,11 @@ from tensorflow.keras.models import load_model
 import mediapipe as mp
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 import h5py
+# from mediapipe.python.solutions import hands
+
+
+# # Inicialize o detector de mãos do MediaPipe
+# hands = mp.solutions.hands.Hands()
 
 with h5py.File('model.h5', 'r', driver='core') as f:
     model = load_model(f, compile=False)

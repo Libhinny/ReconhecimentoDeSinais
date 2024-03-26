@@ -3,22 +3,12 @@ import numpy as np
 from tensorflow.keras.models import load_model
 import mediapipe as mp
 import h5py
-import tensorflow.compat.v1 as tf
 from mediapipe.python.solutions import hands
 
-# Corrigir aviso sobre a função depreciada
-tf.disable_v2_behavior()
-
-# Corrigir erro FileNotFoundError
-try:
-    hand_detection = hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.5)
-except FileNotFoundError as e:
-    print("Erro ao inicializar o modelo de detecção de mãos:", e)
-
 # Carregar o modelo treinado
-with h5py.File('model.h5', 'r', driver='core') as f:
-    # Carregue o modelo
-    final_model = load_model(f, compile=False)
+with h5py.File(r'C:\Users\ytalo\OneDrive\Área de Trabalho\projeto redes neurais\ReconhecimentoDeSinais\checkpointCNN\model.h5', 'r', driver='core') as f:
+    final_model_mlp = load_model(f, compile=False)
+
 
 label_to_text = {
     0: 'bus',
@@ -53,7 +43,7 @@ def predict_object(frame):
     preprocessed_frame = preprocessed_frame.reshape(1, 213, 120, 3)
     
     # Fazer a previsão
-    predicted_class = final_model.predict(preprocessed_frame).argmax()
+    predicted_class = final_model_mlp.predict(preprocessed_frame).argmax()
     predicted_object = label_to_text[predicted_class]
     
     return predicted_object
